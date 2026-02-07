@@ -1,0 +1,8 @@
+build
+debug
+defmplabxtrace.log.inx
+
+Makefile
+dist
+nbproject
+defmplabxtrace.log
