@@ -2,9 +2,15 @@
 #include "init.h"
 
 
+volatile uint8_t rxCount = 0;
+volatile uint8_t rxDone = 0;
+
 volatile uint8_t get_pcu_info[6] = {0xFE, 0x19, 0x01, 0x04, 0x00, 0x00};
 volatile uint8_t get_flySky_info[6] = {0xFE, 0x19, 0x01, 0x05, 0x00, 0x00};
 volatile uint8_t set_motor_settings[10] = {0xFE, 0x19, 0x01, 0x06, 0x04, 0x00, 0x01, 80, 0x01, 80};
+
+volatile uint8_t get_pcu_info_buf[12];
+volatile uint8_t get_flySky_info_buf[26];
 
 void send_get_pcu_info()
 {
@@ -30,15 +36,12 @@ void send_set_motor_settings()
     }
 }
 
-volatile uint8_t rxCount = 0;
-volatile uint8_t rxDone = 0;
 
-volatile uint8_t get_pcu_info_buf[12];
-volatile uint8_t get_flySky_info_buf[26];
 
 
 void __interrupt() ISR() 
 {
+    /*
     if (IOCAFbits.IOCAF5 == 1) {
         
         rxCount = 0;
@@ -47,7 +50,9 @@ void __interrupt() ISR()
         //send_get_pcu_info();
         send_set_motor_settings();
         IOCAFbits.IOCAF5 = 0;  // Clear IOC flag
-    } 
+    }
+    */
+    
 
     if (PIE3bits.RCIE && PIR3bits.RCIF) {
         // handle overrun
@@ -58,9 +63,9 @@ void __interrupt() ISR()
 
         uint8_t b = RC1REG;    // reading clears RCIF
 
-        if (!rxDone && rxCount < 12) {
+        if (!rxDone && rxCount < 26) {
             get_flySky_info_buf[rxCount++] = b;
-            if (rxCount == 12) rxDone = 1;
+            if (rxCount == 26) rxDone = 1;
         }
     }
 }
