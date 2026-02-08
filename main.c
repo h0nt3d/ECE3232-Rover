@@ -2,7 +2,7 @@
 #include "init.h"
 
 void main() 
-{
+{    
     initialize();
     while (1) {}
 }
