@@ -29,7 +29,7 @@ void main()
             
             pwm = (uint8_t)((offset * 100) / MAX_FWD_OFFSET);
             
-            send_motor_settings(1, pwm, 1, pwm);
+            send_motor_settings(2, pwm, 2, pwm);
         }
         
         // Backward
@@ -42,7 +42,7 @@ void main()
             
             pwm = (uint8_t)((offset * 100) / MAX_FWD_OFFSET);
             
-            send_motor_settings(2, pwm, 2, pwm);
+            send_motor_settings(1, pwm, 1, pwm);
         }
         
         // Stop
