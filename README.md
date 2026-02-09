@@ -14,11 +14,61 @@ volatile uint8_t get_pcu_info[6] = {0xFE, 0x19, 0x01, 0x04, 0x00, 0x00};
 ```
 
 **PCU Info Respsone** <br>
-12 bit buffer <br>
+12 byte buffer <br>
 ```c
-response = [SYNC1, SYNC2, IDLSB, IDMSB, SIZELSB, SIZEMSB, TEAMID, PLAYERID, HEALTHLSB, HEALTHMSB, SHIELDFLAG, REPAIRFLAG]
+response = [
+SYNC1,
+SYNC2,
+ID_LSB,
+ID_MSB,
+SIZE_LSB,
+SIZE_MSB,
+TEAM_ID,
+PLAYER_ID,
+HEALTH_LSB,
+HEALTH_MSB,
+SHIELD_FLAG,
+REPAIR_FLAG
+]
 ```
 
+### **Get Flysky Info Command / Get User Data Command**  <br>
+```c
+volatile uint8_t get_flySky_info[6] = {0xFE, 0x19, 0x01, 0x05, 0x00, 0x00};
+```
+
+**PCU Flysky Info Respsone** <br>
+26 byte buffer <br>
+```c
+response =[
+SYNC1,
+SYNC2,
+MSG_ID_LSB,
+MSG_ID_MSB,
+PAYLOAD_SIZE_LSB,
+PAYLOAD_SIZE_MSB,
+RJ_X_LSB,
+RJ_X_MSB,
+RJ_Y_LSB,
+RJ_Y_MSB,
+LJ_Y_LSB,
+LY_Y_MSB,
+LJ_X_LSB,
+LJ_X_MSB,
+SWITCH_A_LSB,
+SWITCH_A_MSB,
+SWITCH_B_LSB,
+SWITCH_B_MSB,
+SWITCH_C_LSB,
+SWITCH_C_MSB,
+SWITCH_D_LSB,
+SWITCH_D_MSB,
+POTEN_VRA_LSB,
+POTEN_VRA_MSB,
+POTEN_VRB_LSB,
+POTEN_VRB_MSB,
+]
+```
 
 # Flysky Controls
 <img src="https://github.com/h0nt3d/ECE3232-Rover/blob/main/images/Flysky.png?raw=true">
