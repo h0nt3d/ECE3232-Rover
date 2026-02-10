@@ -1,4 +1,5 @@
 # ECE3232-Rover
+<img src="https://github.com/h0nt3d/ECE3232-Rover/blob/main/images/photo.jpg?raw=true">
 
 ## Hardware:
 - [MPLAB Xpress Development Board (PIC16F18855)](https://www.microchip.com/en-us/development-tool/dm164140)
