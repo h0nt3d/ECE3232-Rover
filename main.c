@@ -5,6 +5,8 @@
 void main() 
 {    
     initialize();
+    send_set_laser_scope();
+    send_shoot_laser();
     while (1) {
         rxCount = 0;
         rxDone  = 0;

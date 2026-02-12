@@ -8,6 +8,8 @@ volatile uint8_t rxDone = 0;
 volatile uint8_t get_pcu_info[6] = {0xFE, 0x19, 0x01, 0x04, 0x00, 0x00};
 volatile uint8_t get_flySky_info[6] = {0xFE, 0x19, 0x01, 0x05, 0x00, 0x00};
 volatile uint8_t set_motor_settings[10] = {0xFE, 0x19, 0x01, 0x06, 0x04, 0x00, 0x01, 80, 0x01, 80};
+volatile uint8_t set_laser_scope[7] = {0xFE, 0x19, 0x01, 0x08, 0x01, 0x00, 1};
+volatile uint8_t shoot_laser[7] = {0xFE, 0x19, 0x01, 0x09, 0x01, 0x00, 1};
 
 volatile uint8_t get_pcu_info_buf[12];
 volatile uint8_t get_flySky_info_buf[26];
@@ -28,14 +30,6 @@ void send_get_flySky_info()
     }
 }
 
-void send_set_motor_settings()
-{
-    for (int i = 0; i < 10; i++) {
-        TX1REG = set_motor_settings[i];
-        while (!TX1STAbits.TRMT) {}
-    }
-}
-
 void send_motor_settings(uint8_t dirA, uint8_t pwmA, uint8_t dirB, uint8_t pwmB)
 {
     uint8_t msg[10] = {0xFE, 0x19, 0x01, 0x06, 0x04, 0x00, dirA, pwmA, dirB, pwmB};
@@ -46,7 +40,21 @@ void send_motor_settings(uint8_t dirA, uint8_t pwmA, uint8_t dirB, uint8_t pwmB)
     }
 }
 
+void send_set_laser_scope() 
+{
+    for (int i = 0; i < 7; i++) {
+        TX1REG = set_laser_scope[i];
+        while (!TX1STAbits.TRMT) {} // wait until register is empty
+    }
+}
 
+void send_shoot_laser() 
+{
+    for (int i = 0; i < 7; i++) {
+        TX1REG = shoot_laser[i];
+        while (!TX1STAbits.TRMT) {} // wait until register is empty
+    }
+}
 
 void __interrupt() ISR() 
 {
