@@ -8,8 +8,11 @@
 - RCLS - [Radio Controlled Laser System](https://www.digikey.ca/en/products/detail/microchip-technology/DSPIC33CK128MP205-I-PT/9342075) (dsPIC33CK128MP205)
 
 ## Prototypes:
-<img src="https://github.com/h0nt3d/ECE3232-Rover/blob/main/images/prototype_1.jpg?raw=true" width="200">
-<img src="https://github.com/h0nt3d/ECE3232-Rover/blob/main/images/prototype_2.jpg?raw=true" width="200">
+<p float="left">
+<img src="https://github.com/h0nt3d/ECE3232-Rover/blob/main/images/prototype_1.jpg?raw=true" width="300">
+<img src="https://github.com/h0nt3d/ECE3232-Rover/blob/main/images/prototype_2.jpg?raw=true" width="300">
+</p>
+
 <br>
 
 **Version 1 (left) and 2 (right)**
